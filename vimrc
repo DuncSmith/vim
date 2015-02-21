@@ -30,9 +30,19 @@ set tabstop=2
 " Linebreak on 500 characters
 set lbr
 set tw=500
+set number
 
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+" NERDTRee shortcut
+map <C-n> :NERDTreeToggle<CR>
 
+" CTags
+" navigate with <c-]> / <c-t>
+map <Leader>ct :!ctags --exclude=public --exclude=spec --exclude=_html --exclude=tmp --exclude=log --exclude=coverage --extra=+f -R *<CR><CR>
+map <C-\> :tnext<CR>
+map <C-'> :tprev<CR>
+" exclude javascript files
+let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
