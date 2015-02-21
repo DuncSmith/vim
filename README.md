@@ -5,3 +5,7 @@ Install system packages
 Then to initialize and setup symlinks
 
 `rake`
+
+Finally don't forget to generate helptags where needed. e.g. 
+
+`vim -c "helptags vim-fugitive/dpc" -c q` 
