@@ -5,6 +5,10 @@ task :update do
   sh "git submodule update --init"
 end
 
+task :rebase do
+  sh 'git submodule foreach "(git checkout master; git pull)&"'
+end
+
 task :link do
   %w[vimrc gvimrc].each do |script|
     dotfile = File.join(ENV['HOME'], ".#{script}")
