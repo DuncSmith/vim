@@ -1,12 +1,12 @@
 # adapted from github.com/mislav/vimfiles
-task :default => [:update, :link]
+task :default => [:init, :link]
 
-task :update do
+task :init do
   sh "git submodule update --init"
 end
 
-task :rebase do
-  sh 'git submodule foreach "(git checkout master; git pull)&"'
+task :update do
+  sh "git pull --recurse-submodules"
 end
 
 task :link do
