@@ -4,6 +4,7 @@ filetype plugin indent on
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tmuxline#enabled = 0
 
 " Colours etc
 set t_Co=256
@@ -25,7 +26,7 @@ set expandtab
 set smarttab
 
 " Enable mouse support (n,v,i,c or a)
-set mouse=a
+"set mouse=a
 
 " 1 tab == 2 spaces
 set shiftwidth=2
