@@ -18,7 +18,6 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-
 " Use spaces instead of tabs
 set expandtab
 
@@ -51,3 +50,26 @@ map <C-\> :tnext<CR>
 map <C-'> :tprev<CR>
 " exclude javascript files
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
+
+" Mappings
+let mapleader=","
+
+" navigate buffers
+nmap <C-m> :bnext<CR>
+nmap <C-b> :bprev<CR>
+nmap <C-x> :bd<CR>
+
+" easier navigation between split windows
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+map <Leader>t :w<CR>:!bundle exec rspec<CR>
+
+" Store temporary files in a central spot
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
+" set correct syntax highlighting for markdown files
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
