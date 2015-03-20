@@ -27,6 +27,8 @@ set smarttab
 " Enable mouse support (n,v,i,c or a)
 "set mouse=a
 
+"Clean up whitespace before saving
+autocmd BufWritePre * :%s/\s\+$//e
 " 1 tab == 2 spaces
 set shiftwidth=2
 set tabstop=2
@@ -73,3 +75,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " set correct syntax highlighting for markdown files
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+" run tests with Dispatch
+nnoremap <F9> :w<CR>:Dispatch bundle exec rspec %<CR>
+
