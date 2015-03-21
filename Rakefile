@@ -1,13 +1,5 @@
 # adapted from github.com/mislav/vimfiles
-task :default => [:init, :link]
-
-task :init do
-  sh "git submodule update --init"
-end
-
-task :update do
-  sh "git pull --recurse-submodules"
-end
+task :default => :link
 
 task :link do
   %w[vimrc gvimrc].each do |script|
