@@ -1,11 +1,11 @@
 Install system packages
 
-`sudo apt-get install ack-grep exuberant-ctags`
+`brew install ctags ag`
 
 Then to initialize and setup symlinks
 
 `rake`
 
-Finally don't forget to generate helptags where needed. e.g. 
+Install Vim Plugins, run vim
 
-`vim -c "helptags vim-fugitive/dpc" -c q` 
+`:PlugInstall`

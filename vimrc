@@ -1,81 +1,237 @@
-execute pathogen#infect()
+" Various bits inspired/stolen/borrowed from:
+" github.com/mislav/vimfiles
+" github.com/seenmyfate/vim
+" vim.wikia.com
+" http://dougblack.io/words/a-good-vimrc.html
+
+" =LAUNCH CONFIG= {{{
+set encoding=utf8                                   " Set utf8 as sane standard encoding
+set ffs=unix,dos,mac                                " Use Unix as the standard file type
+set clipboard=unnamed                               " use OS clipboard
+set nocompatible                                    " select no compatibility with legacy vi
+set modelines=1                                     " check for per file vim config lines
+" }}}
+" =VIM-PLUG= {{{
+" https://github.com/junegunn/vim-plug
+call plug#begin('~/.vim/plugged')
+
+Plug 'rking/ag.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'msanders/snipmate.vim'
+Plug 'ervandew/supertab'
+Plug 'scrooloose/syntastic'
+Plug 'godlygeek/tabular'
+Plug 'ap/vim-buftabline'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dispatch'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-repeat'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'vimwiki/vimwiki'
+
+call plug#end()
+" }}}
+" =COLOURS= {{{
 syntax on
-filetype plugin indent on
-
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tmuxline#enabled = 0
-
-" Colours etc
-set t_Co=256
-let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
+" }}}
+" =SPACES AND TABS= {{{
+set expandtab                                       " Use spaces instead of tabs
+set shiftwidth=2 tabstop=2                          " a tab is 2 spaces
+set softtabstop=2                                   " number of spaces in tab when editing
+" }}}
+" =UI CONFIG= {{{
+set number                                          " show line numbers
+set showcmd                                         " display incomplete commands
+"set cursorline                                      " Highlight current line - Causes performance issues in large files
+set scrolloff=999                                   " Keep cursor centered
+set colorcolumn=80                                  " highlight at 80 characters
+filetype plugin indent on                           " load filetype-specific indent files
+set wildmenu                                        " visual autocomplete for command menu
+set ai                                              " Auto indent
+set si                                              " Smart indent
+set wrap                                            " Wrap lines
+set linebreak tw=500                                " Linebreak on 500 characters
+set cmdheight=2                                     " number of lines for the cmd line
+set laststatus=2                                    " always have a status line
+set list                                            " turn on invisible characters
+set listchars=tab:▸\ ,trail:-                       " which chars to highlight
+highlight NonText guifg=#444444
+highlight SpecialKey guifg=#444444
+" }}}
+" =SEARCHING= {{{
+set hlsearch                                        " highlight matches
+set incsearch                                       " incremental searching
+set ignorecase                                      " searches are case insensitive...
+set smartcase                                       " ... unless they contain at least one capital letter
 
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
+" clear the search buffer
+nnoremap <CR> :nohlsearch<cr>
+" }}}
+" =FOLDING= {{{
+set foldenable                                      " enable folding
+set foldlevelstart=10                               " open most folds by default
+set foldnestmax=10                                  " 10 nested fold max
 
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
-
-" Use spaces instead of tabs
-set expandtab
-
-" Be smart when using tabs ;)
-set smarttab
-
-" Enable mouse support (n,v,i,c or a)
-"set mouse=a
-
-"Clean up whitespace before saving
-autocmd BufWritePre * :%s/\s\+$//e
-" 1 tab == 2 spaces
-set shiftwidth=2
-set tabstop=2
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-set number
-
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
-
-" NERDTRee shortcut
-map <C-n> :NERDTreeToggle<CR>
-
-" CTags
-" navigate with <c-]> / <c-t>
-map <Leader>ct :!ctags --exclude=public --exclude=spec --exclude=_html --exclude=tmp --exclude=log --exclude=coverage --extra=+f -R *<CR><CR>
-map <C-\> :tnext<CR>
-map <C-'> :tprev<CR>
-" exclude javascript files
-let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
-
-" Mappings
-let mapleader=","
-
-" navigate buffers
-nmap <C-m> :bnext<CR>
-nmap <C-b> :bprev<CR>
-nmap <C-x> :bd<CR>
-
+" space open/closes folds
+nnoremap <space> za
+set foldmethod=indent                               " fold based on indent level
+" }}}
+" =MOVEMENT= {{{
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-map <Leader>t :w<CR>:!bundle exec rspec<CR>
+" Use Arrow keys for navigating tabs and buffers
+nnoremap <Left> :bprevious<CR>
+nnoremap <Right> :bnext<CR>
+nnoremap <Up> :tabnext<CR>
+nnoremap <Down> :tabprevious<CR>
 
-" Store temporary files in a central spot
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+" no movement in insert mode thanks
+inoremap <Left> <nop>
+inoremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" Enable Mouse
+set mouse=n
+
+" navigate buffers
+nnoremap <C-b> :bnext<CR>
+nnoremap <C-x> :bd<CR>
+" }}}
+" =LEADER SHORTCUTS= {{{
+let mapleader=","                                   " leader key
+
+" indenting helpers
+map <Leader>j 60=j
+map <Leader>k 60=k
+
+" edit vimrc/zshrc and load vimrc bindings
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>ez :vsp ~/.zshrc<CR>
+nnoremap <leader>et :vsp ~/.tmux.conf<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" vim-plug shortcuts
+nnoremap <leader>pi :PlugInstall<CR>
+nnoremap <leader>pu :PlugUpdate<CR>
+nnoremap <leader>pc :PlugClean<CR>
+nnoremap <leader>pug :PlugUpgrade<CR>
+nnoremap <leader>ps :PlugStatus<CR>
+
+" Search with Ag.vim
+nnoremap <leader>/ :Ag<space>
+" }}}
+" =AUTOGROUPS= {{{
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown " correct syntax markdown files
+" }}}
+" =BACKUPS= {{{
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " Store temporary files in a central spot
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+" }}}
+" =TMUX= {{{
+" allow cursor change in tmux
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+" }}}
+" =CUSTOM MAPPINGS= {{{
+" hamfisted save
+nnoremap <F8> :w<CR>
+" }}}
+" ====PLUGINS====
+" =EASYMOTION= {{{
+" Bi-directional find motion
+nmap s <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t2)
 
-" set correct syntax highlighting for markdown files
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+" }}}
+" =CtrlP SETTINGS= {{{
+"  CTags + CtrlP
+nnoremap <Leader>. :CtrlPTag<CR>
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" }}}
+" =LIGHTLINE= {{{
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'right': [ [ 'percent', 'lineinfo' ], [ 'fugitive' ], [ 'path' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightLineFugitive',
+      \   'path': 'Path',
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&readonly?"x":""}',
+      \ },
+      \ }
 
-" run tests with Dispatch
+function LightLineFugitive()
+  return exists('*fugitive#head') ? 'Git('.fugitive#head().')' : ''
+endfunction
+
+function Path()
+  return fnamemodify(expand('%:p:h'), ':~:.')
+endfunction
+" }}}
+" =NERDTREE= {{{
+map <C-n> :NERDTreeToggle<CR>
+nmap <silent> <Leader>b :TagbarToggle<CR>
+
+" }}}
+" =DISPATCH= {{{
 nnoremap <F9> :w<CR>:Dispatch bundle exec rspec %<CR>
+nnoremap <F10> :w<CR>:Dispatch RUBYOPT=W0 bundle exec spec %<CR>
+" }}}
+" =RSPEC= {{{
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+let g:rspec_command = '!bundle exec rspec --color {spec}'
+" }}}
+" =CTAGS= {{{
+" navigate with <c-]> / <c-t>
+map <Leader>ct :!ctags --exclude=public --exclude=spec --exclude=_html --exclude=tmp --exclude=log --exclude=coverage --extra=+f -R *<CR><CR>
+map <C-\> :tnext<CR>
+map <C-'> :tprev<CR>
+let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"      " exclude javascript files
+" }}}
+" =SYNTASTIC= {{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" }}}
+" vim:foldmethod=marker:foldlevel=0
