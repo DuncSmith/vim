@@ -15,31 +15,31 @@ set modelines=1                                     " check for per file vim con
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 
-Plug 'rking/ag.vim'
-Plug 'kien/ctrlp.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css'] }
-Plug 'msanders/snipmate.vim'
-Plug 'ervandew/supertab'
-Plug 'scrooloose/syntastic'
-Plug 'godlygeek/tabular'
-Plug 'ap/vim-buftabline'
 Plug 'altercation/vim-colors-solarized'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dispatch'
+Plug 'ap/vim-buftabline'
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css'] }
+Plug 'conradIrwin/vim-bracketed-paste'
 Plug 'easymotion/vim-easymotion'
+Plug 'ervandew/supertab'
+Plug 'godlygeek/tabular'
+Plug 'itchyny/lightline.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'kien/ctrlp.vim'
+Plug 'msanders/snipmate.vim'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
-Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'vim-ruby/vim-ruby'
 Plug 'vimwiki/vimwiki'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-cucumber'
-Plug 'ConradIrwin/vim-bracketed-paste'
 
 call plug#end()
 " }}}
