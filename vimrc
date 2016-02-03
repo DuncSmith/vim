@@ -19,7 +19,7 @@ Plug 'rking/ag.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css'] }
 Plug 'msanders/snipmate.vim'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/syntastic'
@@ -37,6 +37,9 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-cucumber'
+Plug 'ConradIrwin/vim-bracketed-paste'
 
 call plug#end()
 " }}}
@@ -134,7 +137,7 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>pi :PlugInstall<CR>
 nnoremap <leader>pu :PlugUpdate<CR>
 nnoremap <leader>pc :PlugClean<CR>
-nnoremap <leader>pug :PlugUpgrade<CR>
+nnoremap <leader>pg :PlugUpgrade<CR>
 nnoremap <leader>ps :PlugStatus<CR>
 
 " Search with Ag.vim
