@@ -3,6 +3,7 @@
 " github.com/seenmyfate/vim
 " vim.wikia.com
 " http://dougblack.io/words/a-good-vimrc.html
+" https://github.com/mhinz/vim-galore
 
 " =LAUNCH CONFIG= {{{
 set encoding=utf8                                   " Set utf8 as sane standard encoding
@@ -20,17 +21,21 @@ Plug 'ap/vim-buftabline'
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css'] }
 Plug 'conradIrwin/vim-bracketed-paste'
 Plug 'easymotion/vim-easymotion'
+Plug 'elixir-lang/vim-elixir'
 Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'msanders/snipmate.vim'
+Plug 'mtth/scratch.vim'
 Plug 'rking/ag.vim'
+Plug 'rodjek/vim-puppet'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -142,6 +147,12 @@ nnoremap <leader>ps :PlugStatus<CR>
 
 " Search with Ag.vim
 nnoremap <leader>/ :Ag<space>
+
+" Convert ruby 1.8 hashes to 1.9 style, whole document
+nnoremap <leader>pp :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
+
+" Scratch window
+nnoremap <leader>sc :Scratch<CR>
 " }}}
 " =AUTOGROUPS= {{{
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown " correct syntax markdown files
@@ -163,6 +174,7 @@ endif
 " =CUSTOM MAPPINGS= {{{
 " hamfisted save
 nnoremap <F8> :w<CR>
+nnoremap <c-p> :Files<CR>
 " }}}
 " ====PLUGINS====
 " =EASYMOTION= {{{
