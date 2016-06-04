@@ -19,6 +19,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'ap/vim-buftabline'
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css'] }
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'conradIrwin/vim-bracketed-paste'
 Plug 'easymotion/vim-easymotion'
 Plug 'elixir-lang/vim-elixir'
@@ -97,10 +98,10 @@ set foldmethod=indent                               " fold based on indent level
 " }}}
 " =MOVEMENT= {{{
 " easier navigation between split windows
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+" nnoremap <c-j> <c-w>j
+" nnoremap <c-k> <c-w>k
+" nnoremap <c-h> <c-w>h
+" nnoremap <c-l> <c-w>l
 
 " Use Arrow keys for navigating tabs and buffers
 nnoremap <Left> :bprevious<CR>
@@ -156,6 +157,12 @@ nnoremap <leader>sc :Scratch<CR>
 " }}}
 " =AUTOGROUPS= {{{
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown " correct syntax markdown files
+
+" Spell Checking, ]s and  [s to jump, z= to select alternatives
+autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
+autocmd BufRead,BufNewFile *.wiki setlocal spell spelllang=en_gb
+autocmd FileType gitcommit setlocal spell spelllang=en_gb
+
 " }}}
 " =BACKUPS= {{{
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " Store temporary files in a central spot
@@ -174,6 +181,8 @@ endif
 " =CUSTOM MAPPINGS= {{{
 " hamfisted save
 nnoremap <F8> :w<CR>
+
+"Ctrl-p mapped to FZF Files function
 nnoremap <c-p> :Files<CR>
 " }}}
 " ====PLUGINS====
