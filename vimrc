@@ -29,6 +29,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'mhinz/vim-startify'
 Plug 'msanders/snipmate.vim'
 Plug 'mtth/scratch.vim'
 Plug 'rking/ag.vim'
