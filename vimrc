@@ -130,9 +130,11 @@ nnoremap <C-x> :bd<CR>
 " =LEADER SHORTCUTS= {{{
 let mapleader=","                                   " leader key
 
-" indenting helpers
-map <Leader>j 60=j
-map <Leader>k 60=k
+" re-indent file
+nnoremap <leader>i gg=G
+
+" Rails gf (goto file)
+map <leader>f <c-w>f
 
 " edit vimrc/zshrc and load vimrc bindings
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
@@ -194,14 +196,6 @@ nmap t <Plug>(easymotion-t2)
 
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
-" }}}
-" =CtrlP SETTINGS= {{{
-"  CTags + CtrlP
-nnoremap <Leader>. :CtrlPTag<CR>
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 " }}}
 " =LIGHTLINE= {{{
 let g:lightline = {
