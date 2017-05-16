@@ -31,7 +31,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'msanders/snipmate.vim'
-Plug 'mtth/scratch.vim'
+Plug 'rhysd/vim-crystal'
 Plug 'rking/ag.vim'
 Plug 'rodjek/vim-puppet'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -46,6 +46,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'vim-ruby/vim-ruby'
+Plug 'vim-scripts/indentpython.vim', { 'for': 'py' }
 Plug 'vimwiki/vimwiki'
 
 call plug#end()
@@ -157,6 +158,9 @@ nnoremap <leader>pp :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
 
 " Scratch window
 nnoremap <leader>sc :Scratch<CR>
+
+" Toggle syntastic active/passive mode
+noremap <leader>st :SyntasticToggleMode<CR>
 " }}}
 " =AUTOGROUPS= {{{
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown " correct syntax markdown files
@@ -165,7 +169,8 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown " correct syntax markd
 autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
 autocmd BufRead,BufNewFile *.wiki setlocal spell spelllang=en_gb
 autocmd FileType gitcommit setlocal spell spelllang=en_gb
-
+" PEP8 for python
+au BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4
 " }}}
 " =BACKUPS= {{{
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp " Store temporary files in a central spot
